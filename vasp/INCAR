@@ -1,0 +1,39 @@
+SYSTEM   = Cu
+
+ISTART    = 0
+ICHARG= 2
+
+
+
+ENMAX     = 600.0
+EDIFF     = 1E-5
+ISYM = -1
+NELM = 200
+
+ISPIN     = 2
+
+
+MAGMOM    = 35*0.0  2.5 2.5 2.5 2.5 2.5   2.5 2.5 2.5 2.5 2.5   2.5 2.5 2.5 2.5 2.5
+
+#LSORBIT = T
+
+ISMEAR    = 0
+SIGMA  =  0.05
+
+ALGO = N
+PREC = Accurate
+
+LREAL = .FALSE.
+
+LWAVE = .FALSE.
+LCHARG = .FALSE.
+NCORE = 16
+
+
+LORBIT = 11
+
+AMIX      = 0.05
+BMIX      = 0.0001
+AMIX_MAG  = 0.8
+BMIX_MAG  = 0.0001
+
