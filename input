@@ -1,0 +1,16 @@
+atoms_file = 'atoms_anneal.xyz'
+pot_file = 'gap_files/CuNi.gap'
+
+n_species = 2
+species = Cu Ni
+masses = 63.546 58.693
+e0 = -0.21472241 -1.59815363
+
+md_nsteps = 2000000
+md_step = 1.
+
+optimize = "vv"
+thermostat = "bussi"
+t_beg = 1300
+t_end = 1300
+tau_t = 100.
