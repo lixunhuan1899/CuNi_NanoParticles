@@ -37,7 +37,7 @@ n=$(head -n 1 trajectory_out.xyz | awk '{print $1+2}')
 tail -n "$n" trajectory_out.xyz > atoms.xyz
 mv thermo.log logs/annel_Cu.log
 
-end_anneal=$(date +%s)
+end_anneal=$(date +%s) #命令替换语法，真是一通百通
 echo "annel process finished, time used: $((end_anneal-start_anneal)) seconds"
 
 
