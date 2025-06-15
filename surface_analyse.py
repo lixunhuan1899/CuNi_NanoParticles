@@ -50,10 +50,11 @@ def atom_analyse(position: dict, center_vector: np.ndarray, element: str, cutoff
     return f"number of surface {element} atoms is {surface_num},number of inner {element} atoms is {inner_num}"
 
 
-atom_position = read_position("mc_trial.xyz")
+atom_position = read_position("4ns.xyz")
 center_vector = get_mass_center(atom_position, atom_masses)
-cutoff = 9  # 设置截断半径，与质心之间的距离，从而判断是否是表面原子
-element = "Ni"
+print(center_vector)
+cutoff = 7.5  # 设置截断半径，与质心之间的距离，从而判断是否是表面原子
+element = "Cu"
 result = atom_analyse(atom_position, center_vector, element, cutoff)
 
 print(result)
