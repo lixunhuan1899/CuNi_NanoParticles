@@ -1,4 +1,5 @@
 import numpy as np
+from ase.io import read
 
 
 def read_position(xyz_filepath: str) -> dict:
@@ -7,12 +8,12 @@ def read_position(xyz_filepath: str) -> dict:
         lines = f.readlines()[2:]
         atoms = [line.split()[:4] for line in lines]
         for atom in atoms:
-            element = atom[0]
+            elem = atom[0]
             coords = list(map(float, atom[1:4]))
-            if element in position:
-                position[element].append(coords)
+            if elem in position:
+                position[elem].append(coords)
             else:
-                position[element] = [coords]
+                position[elem] = [coords]
     return position
 
 
@@ -36,13 +37,13 @@ def get_mass_center(position: dict, atom_mass: dict) -> np.ndarray:
     return center_of_mass
 
 
-def atom_analyse(position: dict, center_vector: np.ndarray, element: str, cutoff: float) -> str:
+def atom_analyse(position: dict, center: np.ndarray, elem: str, cut: float) -> str:
     surface_num = 0
     inner_num = 0
-    for pos in position[element]:
+    for pos in position[elem]:
         np_pos = np.array(pos, dtype=float)
-        distance = np.linalg.norm(np_pos - center_vector)
-        if distance > cutoff:
+        distance = np.linalg.norm(np_pos - center)
+        if distance > cut:
             surface_num += 1
         else:
             inner_num += 1
@@ -50,30 +51,14 @@ def atom_analyse(position: dict, center_vector: np.ndarray, element: str, cutoff
     return f"number of surface {element} atoms is {surface_num},number of inner {element} atoms is {inner_num}"
 
 
-atom_position = read_position("4ns.xyz")
+structure = read('5ns.xyz')
+ase_test = structure.get_center_of_mass()
+print(ase_test)
+atom_position = read_position("5ns.xyz")
 center_vector = get_mass_center(atom_position, atom_masses)
 print(center_vector)
-cutoff = 7.5  # 设置截断半径，与质心之间的距离，从而判断是否是表面原子
+cutoff = 9  # 设置截断半径，与质心之间的距离，从而判断是否是表面原子
 element = "Cu"
 result = atom_analyse(atom_position, center_vector, element, cutoff)
 
 print(result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
